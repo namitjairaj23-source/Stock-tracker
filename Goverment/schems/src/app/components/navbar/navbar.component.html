@@ -1,0 +1,75 @@
+<nav class="navbar navbar-expand-lg custom-navbar px-3">
+  <div class="container-fluid d-flex justify-content-between align-items-center">
+
+    <!-- Left: Menu Icon + Title + Home + Add User -->
+    <div class="d-flex align-items-center">
+      <!-- Menu Button -->
+      <div class="dropdown me-3">
+        <button class="btn btn-link p-0" id="navMenu" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-list fs-3"></i>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="navMenu">
+          <li>
+            <a class="dropdown-item" (click)="openLink('googleMeet')">
+              <i class="bi bi-camera-video-fill me-1"></i> Live Streaming
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" (click)="goToMoments()">
+              <i class="bi bi-aspect-ratio"></i> Moments With Me
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" (click)="goToContact()">
+              <i class="bi bi-whatsapp text-success"></i> Contact
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Navbar Title -->
+      <span class="navbar-text fw-bold me-2">{{ 'TITLE' | translate }}</span>
+
+      <!-- Buttons -->
+      <button class="btn btn-primary me-2" (click)="goToHome()">
+        {{ 'HOME' | translate }}
+      </button>
+
+      <!-- Show ADD only for Admin -->
+      <button *ngIf="auth.getRole() === 'admin'" 
+              class="btn btn-success me-2" 
+              (click)="showAddForm()">
+        {{ 'ADD_USER' | translate }}
+      </button>
+    </div>
+
+    <!-- Center: Social Icons -->
+    <div class="social-icons d-flex gap-3 mx-3">
+      <i class="bi bi-youtube text-danger fs-5" (click)="openLink('youtube')"></i>
+      <i class="bi bi-instagram text-danger fs-5" (click)="openLink('instagram')"></i>
+      <i class="bi bi-facebook text-primary fs-5" (click)="openLink('facebook')"></i>
+    </div>
+
+    <!-- Right: Language + Font Size -->
+    <div class="d-flex align-items-center gap-2 text-end">
+      <span style="cursor: pointer;" (click)="setLanguage('hi')">हिंदी</span> |
+      <span style="cursor: pointer;" (click)="setLanguage('en')">English</span> |
+      <span style="cursor: pointer;" (click)="setFontSize('normal')">A</span>
+      <span style="cursor: pointer;" (click)="setFontSize('small')">A-</span>
+      <span style="cursor: pointer;" (click)="setFontSize('large')">A+</span>
+    </div>
+
+    <div>
+      <!-- Show Login button only if user NOT logged in -->
+      <button *ngIf="!auth.isLoggedIn()" class="btn btn-outline-primary" (click)="goLogin()">
+        Login
+      </button>
+
+      <!-- Show Logout button if user is logged in -->
+      <button *ngIf="auth.isLoggedIn()" class="btn btn-outline-danger" (click)="logout()">
+        Logout
+      </button>
+    </div>
+
+  </div>
+</nav>

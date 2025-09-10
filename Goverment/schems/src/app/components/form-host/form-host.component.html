@@ -1,0 +1,6 @@
+<div class="container mt-4">
+  <ng-container [ngSwitch]="action">
+    <app-add-user *ngSwitchCase="'add'"></app-add-user>
+    <app-edit-user *ngSwitchCase="'edit'" [user]="selectedUser"></app-edit-user>
+  </ng-container>
+</div>

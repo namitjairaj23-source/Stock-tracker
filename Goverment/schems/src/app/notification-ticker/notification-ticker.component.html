@@ -1,0 +1,36 @@
+<div class="notification-ticker" *ngIf="notifications.length > 0">
+  <div class="ticker-content" 
+       [style.animationDuration]="animationSpeed" 
+       (mouseenter)="pauseTicker()" 
+       (mouseleave)="resumeTicker()">
+    <span *ngFor="let note of notifications">{{ note }} &nbsp; | &nbsp;</span>
+  </div>
+</div>
+
+<div class="notification-ticker" *ngIf="slowNotifications.length > 0">
+  <div class="ticker-content" 
+       [style.animationDuration]="slowAnimationSpeed" 
+       (mouseenter)="pauseTicker()" 
+       (mouseleave)="resumeTicker()">
+    <span *ngFor="let note of slowNotifications">{{ note }} &nbsp; | &nbsp;</span>
+  </div>
+</div>
+
+<div class="notification-ticker" *ngIf="notificat1.length > 0">
+  <div class="ticker-content" 
+       [style.animationDuration]="notificat1AnimationSpeed" 
+       (mouseenter)="pauseTicker()" 
+       (mouseleave)="resumeTicker()">
+    <span *ngFor="let note of notificat1">{{ note }} &nbsp; | &nbsp;</span>
+  </div>
+</div>
+
+<div class="notification-ticker" *ngIf="notificat2.length > 0">
+  <div class="ticker-content" 
+       [style.animationDuration]="notificat2AnimationSpeed" 
+       (mouseenter)="pauseTicker()" 
+       (mouseleave)="resumeTicker()">
+    <span *ngFor="let note of notificat2">{{ note }} &nbsp; | &nbsp;</span>
+  </div>
+</div>
+

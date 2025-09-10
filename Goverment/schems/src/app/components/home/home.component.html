@@ -1,0 +1,160 @@
+<!-- 🔍 Filter Section -->
+<div class="filter-bar mb-3 p-3 rounded border shadow-sm bg-light">
+  <h5 class="mb-3">🔍 Filter & Sort Users</h5>
+
+  <div class="row g-2">
+    <div class="col-md-3">
+      <input type="text" class="form-control"
+             [(ngModel)]="filters.name"
+             (ngModelChange)="applyFilter()"
+             placeholder="Filter by Name" />
+    </div>
+    <div class="col-md-3">
+      <input type="text" class="form-control"
+             [(ngModel)]="filters.state"
+             (ngModelChange)="applyFilter()"
+             placeholder="Filter by State" />
+    </div>
+    <div class="col-md-3">
+      <input type="text" class="form-control"
+             [(ngModel)]="filters.district"
+             (ngModelChange)="applyFilter()"
+             placeholder="Filter by District" />
+    </div>
+    <div class="col-md-3">
+      <select class="form-select"
+              [(ngModel)]="sortKey"
+              (change)="applySorting()">
+        <option value="">-- Sort By --</option>
+        <option value="name">Name</option>
+        <option value="email">Email</option>
+        <option value="state">State</option>
+        <option value="district">District</option>
+        <option value="date">Date</option>
+        <option value="share">Share Name</option>
+        <option value="qty">Quantity</option>
+        <option value="rate">Rate</option>
+        <option value="amount">Amount</option>
+        <option value="authorizedPerson">Authorized persons</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- 📄 User Table Section -->
+<div class="p-3 pt-2 pb-2 border rounded shadow-sm bg-white">
+  <div class="d-flex justify-content-between align-items-center mb-2">
+    <h5 class="mb-0">📋 User List</h5>
+    <div class="d-flex align-items-center">
+      <button class="btn btn-outline-success me-2" (click)="exportExcel()" title="Export to Excel">
+        <i class="bi bi-file-earmark-excel"></i>
+      </button>
+      <button class="btn btn-outline-danger" (click)="exportPDF()" title="Export to PDF">
+        <i class="bi bi-file-earmark-pdf"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th (click)="sortData('name')" style="cursor: pointer;">Name ⬍</th>
+          <th (click)="sortData('email')" style="cursor: pointer;">email ⬍</th>
+          <th (click)="sortData('state')" style="cursor: pointer;">State ⬍</th>
+          <th (click)="sortData('district')" style="cursor: pointer;">District ⬍</th>
+          <th (click)="sortData('date')" style="cursor: pointer;">Date ⬍</th>
+          <th (click)="sortData('share')" style="cursor: pointer;">Share Name ⬍</th>
+          <th (click)="sortData('qty')" style="cursor: pointer;">Qty ⬍</th>
+          <th (click)="sortData('rate')" style="cursor: pointer;">Rate ⬍</th>
+          <th (click)="sortData('amount')" style="cursor: pointer;">Amount ⬍</th>
+          <th (click)="sortData('authorizedPerson')" style="cursor: pointer;">AuthorizedPerson ⬍</th>
+          <th>Photo</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let user of users; let i = index">
+          <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td>
+          <td>{{ user.fullName }}</td>
+          <td> {{user.email}}</td>
+          <td>{{ user.state }}</td>
+          <td>{{ user.District }}</td>
+          <td>{{ user.Date }}</td>
+          <td>{{ user.ShareName }}</td>
+          <td>{{ user.Qty }}</td>
+          <td>{{ user.rate }}</td>
+          <td>{{ user.Amount }}</td>
+        <td>{{ user.authorizedPerson }}</td>
+          <td>
+            <input type="file"
+                   accept="image/*"
+                   hidden
+                   #fileInput
+                   (change)="onPhotoUpload($event, user)" />
+            <button class="btn btn-info btn-sm" (click)="fileInput.click()">
+              <i class="bi bi-image"></i> Upload
+            </button>
+            <div *ngIf="user.photoUrl" class="mt-2">
+              <img [src]="user.photoUrl"
+                   width="100"
+                   height="100"
+                   class="img-thumbnail"
+                   alt="Uploaded Photo" />
+              <br />
+              <a [href]="user.photoUrl"
+                 download="photo.jpg"
+                 class="btn btn-secondary btn-sm mt-1 me-1">Download</a>
+              <button class="btn btn-danger btn-sm mt-1" (click)="removePhoto(user)">Remove</button>
+            </div>
+          </td>
+
+          <td>
+            <button class="btn btn-sm btn-outline-primary me-1" (click)="editUser(user)">Edit</button>
+
+            <button class="btn btn-sm btn-danger" (click)="deleteUser(user.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 📄 Pagination -->
+  <div class="d-flex justify-content-between align-items-center mt-2">
+    <button class="btn btn-outline-success"
+            (click)="goPrevious()"
+            [disabled]="currentPage === 1">← Previous</button>
+    <span class="fw-bold">{{ currentPage }} of {{ totalPages }}</span>
+    <button class="btn btn-outline-success"
+            (click)="goNext()"
+            [disabled]="currentPage === totalPages">Next →</button>
+  </div>
+</div>
+
+<!-- ✏️ Popup Edit Form -->
+<div class="modal fade show d-block" tabindex="-1" *ngIf="editMode">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">Edit User</h5>
+        <button type="button" class="btn-close btn-close-white" (click)="closeEditForm()"></button>
+      </div>
+      <div class="modal-body">
+        <app-edit-user
+          [user]="selectedUser"
+          (closeEdit)="closeEditForm()"
+          (userUpdated)="onUserUpdated($event)">
+        </app-edit-user>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Overlay background -->
+<div class="modal-backdrop fade show" *ngIf="editMode"></div>
+
+
+<!-- 📢 Notification Ticker -->
+<app-notification-ticker></app-notification-ticker>

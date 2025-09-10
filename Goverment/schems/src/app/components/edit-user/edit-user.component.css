@@ -1,0 +1,265 @@
+/* Container & layout */
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(18, 38, 63, 0.08);
+  animation: fadeInUp 420ms ease both;
+  padding: 1.5rem;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* Form heading */
+.container h2 {
+  font-size: 1.35rem;
+  margin-bottom: 0.75rem;
+  color: #123;
+  letter-spacing: 0.2px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  animation: popIn 360ms ease both;
+}
+
+/* Row spacing already present by bootstrap classes; add small adjustments */
+.row.g-3 {
+  gap: 1rem;
+}
+
+/* Labels & inputs */
+label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.88rem;
+  margin-bottom: 0.25rem;
+  color: #223;
+}
+
+.form-control {
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 8px;
+  padding: 0.6rem 0.75rem;
+  height: 40px;
+  transition: box-shadow 160ms ease, transform 120ms ease, border-color 160ms ease;
+  background: #fff;
+  font-size: 0.95rem;
+}
+
+/* Focus state */
+.form-control:focus {
+  outline: none;
+  border-color: rgba(59,130,246,0.9);
+  box-shadow: 0 6px 18px rgba(59,130,246,0.08);
+  transform: translateY(-1px);
+}
+
+/* Inputs with type=number small tweak */
+input[type="number"] {
+  -webkit-appearance: none; /* Chrome, Safari */
+  -moz-appearance: textfield; /* Firefox */
+  appearance: none; /* Standard property */
+}
+select {
+  -webkit-appearance: none; /* Safari/Chrome */
+  -moz-appearance: none;    /* Firefox */
+  appearance: none;         /* Standard (cross-browser) */
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+}
+
+.modal-container {
+  background: #fff;
+  padding: 20px;
+  width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+
+/* Validation messages */
+.text-danger small {
+  display: block;
+  font-size: 0.78rem;
+  color: #e02424;
+  margin-top: 0.25rem;
+}
+
+/* Disabled/readonly field look (ShareAmount) */
+input[readonly] {
+  background: #f6f8fb;
+  color: #334;
+  cursor: not-allowed;
+}
+
+/* Select dropdowns styling */
+select.form-control {
+  appearance: auto;
+  background-position: right 0.75rem center;
+}
+
+/* Buttons group & primary/secondary */
+.btn {
+  border-radius: 10px;
+  padding: 0.5rem 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+  box-shadow: 0 4px 12px rgba(18,38,63,0.06);
+}
+
+.btn:active { transform: translateY(1px); }
+
+/* Primary button */
+.btn-primary {
+  background: linear-gradient(180deg, #2563eb 0%, #1e40af 100%);
+  color: #fff;
+  border: none;
+}
+.btn-primary[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Secondary button */
+.btn-secondary {
+  background: #f3f4f6;
+  color: #0f172a;
+  border: 1px solid rgba(15,23,42,0.06);
+}
+
+/* File input style: hide default, show nicer container (file input remains) */
+input[type="file"] {
+  cursor: pointer;
+}
+
+/* Photo preview grid */
+.d-flex.flex-wrap.gap-3 {
+  gap: 0.75rem;
+}
+
+.d-flex.flex-wrap img {
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+  box-shadow: 0 6px 14px rgba(7,12,34,0.06);
+}
+
+/* Photo card container */
+.d-flex.flex-wrap > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  width: 110px;
+}
+
+/* Buttons under each photo */
+.btn-group.d-block {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Photo hover */
+.d-flex.flex-wrap img:hover {
+  transform: scale(1.04);
+  box-shadow: 0 10px 30px rgba(7,12,34,0.12);
+}
+
+/* Update label style */
+.btn-warning {
+  background: #f59e0b;
+  color: #071;
+  border: none;
+}
+.btn-danger { background: #ef4444; color: #fff; border: none; }
+.btn-success { background: #10b981; color: #fff; border: none; }
+
+/* Responsive tweaks */
+@media (max-width: 720px) {
+  .container { padding: 1rem; }
+  .d-flex.flex-wrap > div { width: 48%; }
+}
+
+/* Small utility */
+.mt-3 { margin-top: 1rem; }
+.mt-2 { margin-top: 0.6rem; }
+.mt-4 { margin-top: 1.25rem; }
+
+/* Animation: fadeInUp for container */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px) scale(0.995); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Small popIn for headings */
+@keyframes popIn {
+  0%   { opacity: 0; transform: translateY(-6px) scale(0.98); }
+  70%  { transform: translateY(2px) scale(1.02); opacity: 1; }
+  100% { transform: translateY(0) scale(1); }
+}
+
+/* Subtle focus pulse for form controls */
+@keyframes focusPulse {
+  0% { box-shadow: 0 6px 18px rgba(59,130,246,0.02); }
+  50% { box-shadow: 0 8px 22px rgba(59,130,246,0.04); }
+  100% { box-shadow: 0 6px 18px rgba(59,130,246,0.02); }
+}
+
+/* Shake animation for invalid inputs (apply via class .shake when needed) */
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+.shake {
+  animation: shake 420ms ease;
+  border-color: #ef4444 !important;
+}
+
+/* Accessibility: focus-visible outlines */
+.form-control:focus-visible {
+  outline: 3px solid rgba(59,130,246,0.12);
+  outline-offset: 2px;
+}
+
+/* Tiny helper for small labels */
+small { font-size: 0.78rem; }
+
+/* Smooth transitions for show/hide of error texts (ngIf toggles) */
+.text-danger { transition: opacity 180ms ease; }
+
+/* Pretty console-looking error badge (optional use) */
+.error-badge {
+  display: inline-block;
+  padding: 0.2rem 0.45rem;
+  background: rgba(239,68,68,0.08);
+  color: #b91c1c;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.78rem;
+}

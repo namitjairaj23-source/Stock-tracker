@@ -1,0 +1,58 @@
+/* Styling the main heading */
+h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  animation: fadeInDown 0.8s ease-in-out;
+}
+
+/* Container for buttons */
+.d-flex {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* Common button styles */
+.btn {
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  padding: 12px 16px;
+  transition: all 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* WhatsApp button hover animation */
+.btn-success:hover {
+  background-color: #1ebe57;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 200, 83, 0.4);
+}
+
+/* Telegram button hover animation */
+.btn-primary:hover {
+  background-color: #268bde;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+}
+
+/* Click effect */
+.btn:active {
+  transform: scale(0.95);
+}
+
+/* Fade-in animation */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
