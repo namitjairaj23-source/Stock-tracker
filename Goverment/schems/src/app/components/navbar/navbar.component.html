@@ -1,75 +1,73 @@
 <nav class="navbar navbar-expand-lg custom-navbar px-3">
-  <div class="container-fluid d-flex justify-content-between align-items-center">
+  <div class="container-fluid">
 
-    <!-- Left: Menu Icon + Title + Home + Add User -->
-    <div class="d-flex align-items-center">
-      <!-- Menu Button -->
-      <div class="dropdown me-3">
-        <button class="btn btn-link p-0" id="navMenu" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="bi bi-list fs-3"></i>  <!-- For Humber icon -->
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="navMenu">
-          <li>
-            <a class="dropdown-item" (click)="openLink('googleMeet')">
-              <i class="bi bi-camera-video-fill me-1"></i> Live Streaming
-            </a>
-          </li>
-          <li>
-            <a class="dropdown-item" (click)="goToMoments()">
-              <i class="bi bi-aspect-ratio"></i> Moments With Me
-            </a>
-          </li>
-          <li>
-            <a class="dropdown-item" (click)="goToContact()">
-              <i class="bi bi-whatsapp text-success"></i> Contact
-            </a>
-          </li>
-        </ul>
+    <!-- Brand -->
+    <a class="navbar-brand fw-bold me-2">{{ 'TITLE' | translate }}</a>
+
+    <!-- Hamburger Icon -->
+    <button class="btn btn-link p-0" (click)="toggleSidebar()">
+      <i class="bi bi-list fs-3"></i>
+    </button>
+
+    <!-- Center: Home button -->
+    <button class="btn btn-primary ms-3" (click)="goToHome()">
+      {{ 'HOME' | translate }}
+    </button>
+
+    <!-- Right side: Language + Font size + Login/Logout -->
+    <div class="d-flex align-items-center gap-3 ms-auto">
+
+      <!-- Language -->
+      <div>
+        <span style="cursor: pointer;" (click)="setLanguage('hi')">हिंदी</span> |
+        <span style="cursor: pointer;" (click)="setLanguage('en')">English</span>
       </div>
 
-      <!-- Navbar Title -->
-      <span class="navbar-text fw-bold me-2">{{ 'TITLE' | translate }}</span>
+      <!-- Font Size -->
+      <div>
+        <span style="cursor: pointer;" (click)="setFontSize('small')">A-</span>
+        <span style="cursor: pointer;" (click)="setFontSize('normal')">A</span>
+        <span style="cursor: pointer;" (click)="setFontSize('large')">A+</span>
+      </div>
 
-      <!-- Buttons -->
-      <button class="btn btn-primary me-2" (click)="goToHome()">
-        {{ 'HOME' | translate }}
-      </button>
-
-      <!-- Show ADD only for Admin -->
-      <button *ngIf="auth.getRole() === 'admin'" 
-              class="btn btn-success me-2" 
-              (click)="showAddForm()">
-        {{ 'ADD_USER' | translate }}
-      </button>
-    </div>
-
-    <!-- Center: Social Icons -->
-    <div class="social-icons d-flex gap-3 mx-3">
-      <i class="bi bi-youtube text-danger fs-5" (click)="openLink('youtube')"></i>
-      <i class="bi bi-instagram text-danger fs-5" (click)="openLink('instagram')"></i>
-      <i class="bi bi-facebook text-primary fs-5" (click)="openLink('facebook')"></i>
-    </div>
-
-    <!-- Right: Language + Font Size -->
-    <div class="d-flex align-items-center gap-2 text-end">
-      <span style="cursor: pointer;" (click)="setLanguage('hi')">हिंदी</span> |
-      <span style="cursor: pointer;" (click)="setLanguage('en')">English</span> |
-      <span style="cursor: pointer;" (click)="setFontSize('normal')">A</span>
-      <span style="cursor: pointer;" (click)="setFontSize('small')">A-</span>
-      <span style="cursor: pointer;" (click)="setFontSize('large')">A+</span>
-    </div>
-
-    <div>
-      <!-- Show Login button only if user NOT logged in -->
+      <!-- Login/Logout -->
       <button *ngIf="!auth.isLoggedIn()" class="btn btn-outline-primary" (click)="goLogin()">
-        Login
+        {{ 'LOGIN' | translate }}
       </button>
-
-      <!-- Show Logout button if user is logged in -->
       <button *ngIf="auth.isLoggedIn()" class="btn btn-outline-danger" (click)="logout()">
-        Logout
+        {{ 'LOGOUT' | translate }}
       </button>
     </div>
-
   </div>
 </nav>
+
+<!-- Sidebar -->
+<div class="sidebar" [class.open]="isSidebarOpen">
+  <div class="sidebar-header d-flex justify-content-between align-items-center p-3">
+    <h5 class="mb-0">{{ 'TITLE' | translate }}</h5>
+    <button class="btn-close" (click)="toggleSidebar()"></button>
+  </div>
+
+  <div class="sidebar-body p-3">
+    <!-- Show ADD only for Admin -->
+    <button *ngIf="auth.getRole() === 'admin'" 
+            class="btn btn-success w-100 mb-2" 
+            (click)="showAddForm(); toggleSidebar()">
+      {{ 'ADD_USER' | translate }}
+    </button>
+
+    <!-- Other Links -->
+    <button class="btn btn-outline-secondary w-100 mb-2" (click)="openLink('googleMeet'); toggleSidebar()">
+      {{ 'LIVE_STREAM' | translate }}
+    </button>
+    <button class="btn btn-outline-secondary w-100 mb-2" (click)="goToMoments(); toggleSidebar()">
+      {{ 'MOMENTS' | translate }}
+    </button>
+    <button class="btn btn-outline-secondary w-100 mb-2" (click)="goToContact(); toggleSidebar()">
+      {{ 'CONTACT' | translate }}
+    </button>
+  </div>
+</div>
+
+<!-- Backdrop -->
+<div class="backdrop" *ngIf="isSidebarOpen" (click)="toggleSidebar()"></div>

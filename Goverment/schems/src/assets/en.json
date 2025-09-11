@@ -1,7 +1,9 @@
 {
-  "TITLE": "Stock Leader Report",
+  "TITLE": "📊 Government Schemes + Stock Tracker",
   "HOME": "Home",
   "ADD_USER": "Add User",
+  "LOGIN": "Login",
+  "LOGOUT": "Logout",
   "LIVE_STREAM": "Live Streaming",
   "MOMENTS": "Moments With Me",
   "CONTACT": "Contact",

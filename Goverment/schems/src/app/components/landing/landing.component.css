@@ -1,0 +1,80 @@
+/* Main Container */
+.landing-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 60px 80px;
+  min-height: 100vh;
+
+  /* Full background image with overlay */
+ background: linear-gradient(rgba(0, 123, 255, 0.6), rgba(0, 198, 255, 0.6)),
+            url("/images/landing.jpg") no-repeat center center/cover;
+
+
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  gap: 50px;
+}
+
+/* Left Content */
+.content {
+  max-width: 520px;
+  animation: fadeInLeft 1.5s ease;
+}
+
+.content h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.content p {
+  font-size: 1.2rem;
+  margin-bottom: 35px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.btn {
+  padding: 14px 32px;
+  border-radius: 30px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.primary {
+  background: #004aad;
+  color: white;
+}
+
+.primary:hover {
+  background: #003380;
+}
+
+.secondary {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+}
+
+.secondary:hover {
+  background: white;
+  color: #007bff;
+}
+
+/* Animations */
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+}

@@ -12,8 +12,11 @@ import { AuthService } from '../../auth.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
+// ...same imports as before
+
 export class NavbarComponent {
   isBrowser: boolean = false;
+  isSidebarOpen: boolean = false; // ✅ Sidebar state
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -21,53 +24,49 @@ export class NavbarComponent {
     private renderer: Renderer2,
     private translate: TranslateService,
     private router: Router,
-    public auth: AuthService   // template access
+    public auth: AuthService
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
 
-    // Translation setup
     this.translate.addLangs(['en', 'hi']);
     this.translate.setDefaultLang('en');
+    this.initLanguage();
 
     if (this.isBrowser) {
-      const savedLang = localStorage.getItem('lang');
-      if (savedLang) this.translate.use(savedLang);
-
       const savedFont = localStorage.getItem('fontSize') as 'small' | 'normal' | 'large';
       if (savedFont) this.applyFontSize(savedFont);
     }
   }
 
-  // ✅ Navigation using Router
-  goToHome() {
-    this.router.navigate(['/home']);
-  }
-  showAddForm() {
-    this.router.navigate(['/add-user']);
-  }
-  goToContact() {
-    this.router.navigate(['/contact']);
-  }
-  goToMoments() {
-    this.router.navigate(['/moments']);
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
   }
 
-  // ✅ Language + Font Size
+  private initLanguage() {
+    const savedLang = this.isBrowser ? localStorage.getItem('lang') : null;
+    this.translate.use(savedLang || 'en');
+  }
+
+  goToHome() { this.router.navigate(['/home']); }
+  showAddForm() { this.router.navigate(['/add-user']); }
+  goToContact() { this.router.navigate(['/contact']); }
+  goToMoments() { this.router.navigate(['/moments']); }
+
   setLanguage(lang: string) {
     this.translate.use(lang);
     if (this.isBrowser) localStorage.setItem('lang', lang);
   }
+
   private applyFontSize(size: 'small' | 'normal' | 'large') {
     const root = this.document.documentElement;
-    const sizeMap = { small: '14px', normal: '16px', large: '18px' };
-    this.renderer.setStyle(root, 'font-size', sizeMap[size]);
+    root.classList.remove('font-small', 'font-normal', 'font-large');
+    root.classList.add(`font-${size}`);
   }
   setFontSize(size: 'small' | 'normal' | 'large') {
     this.applyFontSize(size);
     if (this.isBrowser) localStorage.setItem('fontSize', size);
   }
 
-  // ✅ External Links
   openLink(platform: string) {
     if (!this.isBrowser) return;
     const urls: Record<string, string> = {
@@ -80,13 +79,9 @@ export class NavbarComponent {
     if (url) window.open(url, '_blank');
   }
 
-  // ✅ Login / Logout
-  goLogin() {
-    this.router.navigate(['/login']);   
-  }
-
+  goLogin() { this.router.navigate(['/login']); }
   logout() {
     this.auth.logout();
-    this.router.navigate(['/home']);
+    this.router.navigate(['/']);
   }
 }

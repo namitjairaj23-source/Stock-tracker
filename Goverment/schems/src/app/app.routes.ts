@@ -1,55 +1,20 @@
 import { Routes } from '@angular/router';
+import { AuthGuard, AdminGuard } from './auth.guard';
 
 export const routes: Routes = [
-  // Default route → redirect to home
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', loadComponent: () => import('./components/landing/landing.component').then(m => m.LandingComponent) },
 
-  // Home Component
-  {
-    path: 'home',
-    loadComponent: () =>
-      import('./components/home/home.component').then(m => m.HomeComponent),
-  },
+  { path: 'login', loadComponent: () => import('./login/login.component').then(m => m.LoginComponent) },
 
-  // Add User Component
-  {
-    path: 'add-user',
-    loadComponent: () =>
-      import('./components/add-user/add-user.component').then(m => m.AddUserComponent),
-  },
+  { path: 'home', canActivate: [AuthGuard], loadComponent: () => import('./components/home/home.component').then(m => m.HomeComponent) },
 
-  // Edit User Component
-  {
-    path: 'edit-user',
-    loadComponent: () =>
-      import('./components/edit-user/edit-user.component').then(m => m.EditUserComponent),
-  },
+  { path: 'add-user', canActivate: [AdminGuard], loadComponent: () => import('./components/add-user/add-user.component').then(m => m.AddUserComponent) },
 
-  // Contact Component
-  {
-    path: 'contact',
-    loadComponent: () =>
-      import('./components/contact/contact.component').then(m => m.ContactUserComponent),
-  },
+  { path: 'edit-user', canActivate: [AdminGuard], loadComponent: () => import('./components/edit-user/edit-user.component').then(m => m.EditUserComponent) },
 
-  // Delete User Component
-  {
-    path: 'delete-user',
-    loadComponent: () =>
-      import('./delete-users/delete-users.component').then(m => m.DeleteUsersComponent),
-  },
+  { path: 'contact', loadComponent: () => import('./components/contact/contact.component').then(m => m.ContactUserComponent) },
 
-  // ✅ Login Component
-  {
-    path: 'login',
-    loadComponent: () =>
-      import('./login/login.component').then(m => m.LoginComponent),
-  },
+  { path: 'delete-user', canActivate: [AdminGuard], loadComponent: () => import('./delete-users/delete-users.component').then(m => m.DeleteUsersComponent) },
 
-  // Wildcard route → Not Found Component
-  {
-    path: '**',
-    loadComponent: () =>
-      import('./not-found/not-found.component').then(m => m.default),
-  },
+  { path: '**', loadComponent: () => import('./not-found/not-found.component').then(m => m.default) }
 ];
