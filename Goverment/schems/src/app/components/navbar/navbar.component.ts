@@ -1,9 +1,10 @@
-import { Component, Inject, Renderer2 } from '@angular/core';
+import { Component, Inject, Renderer2, OnInit } from '@angular/core';
 import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../../auth.service';
+import { HttpClient } from '@angular/common/http'; // 👈 Add this import
 
 @Component({
   selector: 'app-navbar',
@@ -12,11 +13,10 @@ import { AuthService } from '../../auth.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-// ...same imports as before
-
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
+  notifications: string[] = [];
   isBrowser: boolean = false;
-  isSidebarOpen: boolean = false; // ✅ Sidebar state
+  isSidebarOpen: boolean = false;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -24,7 +24,8 @@ export class NavbarComponent {
     private renderer: Renderer2,
     private translate: TranslateService,
     private router: Router,
-    public auth: AuthService
+    public auth: AuthService,
+    private http: HttpClient // 👈 Inject HttpClient
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
 
@@ -36,6 +37,17 @@ export class NavbarComponent {
       const savedFont = localStorage.getItem('fontSize') as 'small' | 'normal' | 'large';
       if (savedFont) this.applyFontSize(savedFont);
     }
+  }
+
+  ngOnInit() {
+    this.loadNotifications();
+  }
+
+  loadNotifications() {
+    this.http.get<string[]>('assets/notifications.json').subscribe({
+      next: (data) => this.notifications = data,
+      error: () => this.notifications = []
+    });
   }
 
   toggleSidebar() {

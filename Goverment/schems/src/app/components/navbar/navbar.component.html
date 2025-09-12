@@ -2,7 +2,7 @@
   <div class="container-fluid">
 
     <!-- Brand -->
-    <a class="navbar-brand fw-bold me-2">{{ 'TITLE' | translate }}</a>
+    <a class="navbar-brand fw-bold me-2">{{ 'Stock Leader Database' | translate }}</a>
 
     <!-- Hamburger Icon -->
     <button class="btn btn-link p-0" (click)="toggleSidebar()">
@@ -71,3 +71,15 @@
 
 <!-- Backdrop -->
 <div class="backdrop" *ngIf="isSidebarOpen" (click)="toggleSidebar()"></div>
+
+
+<!-- ...existing code... -->
+
+<!-- Notification Ticker -->
+<div class="notification-ticker bg-warning text-dark py-1 px-3" *ngIf="notifications?.length">
+  <marquee>
+    {{ notifications.join(' | ') }}
+  </marquee>
+</div>
+
+<!-- ...existing code... -->

@@ -1,15 +1,66 @@
-<div class="landing-container">
+<!-- Header -->
+<header class="header">
+  <div class="logo">📊 Stock Leader Database</div>
+  <nav class="nav-links">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a (click)="goToLogin()">Sign In</a>
+    <a href="#contact">Contact Us</a>
+  </nav>
+</header>
+
+<!-- Landing Page -->
+<div class="landing-container" id="home">
   <!-- Left Section -->
   <div class="content">
-    <h1>📊 Government Schemes + Stock Tracker</h1>
-    <p>
+    <h1 class="fade-in">📊 Government Schemes + Stock Tracker</h1>
+    <p class="fade-in delay-1">
       Manage users, investments, and reports with ease.<br>
       Track government schemes, stock performance, and make informed decisions.
     </p>
+  </div>
 
-    <div class="buttons">
-      <button class="btn primary" (click)="goToLogin()">🔑 Sign In</button>
-      <button class="btn secondary" (click)="goToContact()">📞 Contact Us</button>
+  <!-- Right Section (Cards) -->
+  <div class="cards fade-in-right">
+    <div class="card">
+      <h3>📈 Stock Tracking</h3>
+      <p>Track real-time stock performance and growth.</p>
+    </div>
+    <div class="card">
+      <h3>🏛️ Govt Schemes</h3>
+      <p>Stay updated with the latest government schemes.</p>
+    </div>
+    <div class="card">
+      <h3>📊 Reports</h3>
+      <p>Generate detailed investment and user reports.</p>
     </div>
   </div>
 </div>
+
+<!-- About Section -->
+<section class="about" id="about">
+  <h2>About Us</h2>
+  <p>
+    The Stock Leader Database helps you manage government schemes and track stock performance 
+    with modern tools and analytics.
+  </p>
+</section>
+
+<!-- Contact Section -->
+<!-- Contact Section (remove id="contact" if you're using routing) -->
+<section class="contact">
+  <h2>Contact Us</h2>
+  <p>Have queries? Get in touch with us via email or WhatsApp.</p>
+
+  <!-- Contact Page Button -->
+  <button class="btn" (click)="goToContact()">
+    Go to Contact Page
+  </button>
+</section>
+
+
+<!-- Footer -->
+<footer class="footer">
+  <p>© 2025 Stock Leader Database. All rights reserved.</p>
+</footer>
+<!-- Note: Ensure to replace placeholder links and texts with actual data as needed. -->
