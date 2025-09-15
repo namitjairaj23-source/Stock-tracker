@@ -1,0 +1,46 @@
+/* container.component.css */
+
+.container {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+  background: #f9fafb; /* very light gray-blue */
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgb(0 0 0 / 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
+  user-select: none;
+  position: relative;
+}
+
+/* Animation for container content fade and slide */
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ng-switch {
+  animation: fadeSlideIn 0.6s ease forwards;
+}
+
+/* Add some margin between forms if needed */
+app-add-user,
+app-edit-user {
+  display: block;
+  margin: auto;
+}
+
+/* Responsive for smaller devices */
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem;
+    margin: 1rem;
+    max-width: 100%;
+  }
+}

@@ -1,0 +1,21 @@
+﻿{
+  "notifications": [
+    "Welcome to our government schemes portal.",
+    "New schemes are available for registration.",
+    "Scheduled maintenance on 15th August.",
+    "Check your eligibility now.",
+    "Direct Benefit Transfer – Get subsidies directly in your account."
+  ],
+  "slowNotifications": [
+    "Pradhan Mantri Fasal Bima Yojana – Apply before 30th September.",
+    "Soil Health Card Scheme – Get your soil tested for better farming."
+  ],
+  "notificat1": [
+    "Ujjwala Yojana – Free LPG connection for eligible households.",
+    "Ayushman Bharat – Free health insurance for eligible families."
+  ],
+  "notificat2": [
+    "National Pension Scheme – Register today for retirement benefits.",
+    "Atal Pension Yojana – Secure your old age with monthly pension."
+  ]
+}

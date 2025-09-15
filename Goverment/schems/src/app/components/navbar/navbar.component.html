@@ -1,0 +1,85 @@
+<nav class="navbar navbar-expand-lg custom-navbar px-3">
+  <div class="container-fluid">
+
+    <!-- Brand -->
+    <a class="navbar-brand fw-bold me-2">{{ 'Stock Leader Database' | translate }}</a>
+
+    <!-- Hamburger Icon -->
+    <button class="btn btn-link p-0" (click)="toggleSidebar()">
+      <i class="bi bi-list fs-3"></i>
+    </button>
+
+    <!-- Center: Home button -->
+    <button class="btn btn-primary ms-3" (click)="goToHome()">
+      {{ 'HOME' | translate }}
+    </button>
+
+    <!-- Right side: Language + Font size + Login/Logout -->
+    <div class="d-flex align-items-center gap-3 ms-auto">
+
+      <!-- Language -->
+      <div>
+        <span style="cursor: pointer;" (click)="setLanguage('hi')">हिंदी</span> |
+        <span style="cursor: pointer;" (click)="setLanguage('en')">English</span>
+      </div>
+
+      <!-- Font Size -->
+      <div>
+        <span style="cursor: pointer;" (click)="setFontSize('small')">A-</span>
+        <span style="cursor: pointer;" (click)="setFontSize('normal')">A</span>
+        <span style="cursor: pointer;" (click)="setFontSize('large')">A+</span>
+      </div>
+
+      <!-- Login/Logout -->
+      <button *ngIf="!auth.isLoggedIn()" class="btn btn-outline-primary" (click)="goLogin()">
+        {{ 'LOGIN' | translate }}
+      </button>
+      <button *ngIf="auth.isLoggedIn()" class="btn btn-outline-danger" (click)="logout()">
+        {{ 'LOGOUT' | translate }}
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Sidebar -->
+<div class="sidebar" [class.open]="isSidebarOpen">
+  <div class="sidebar-header d-flex justify-content-between align-items-center p-3">
+    <h5 class="mb-0">{{ 'TITLE' | translate }}</h5>
+    <button class="btn-close" (click)="toggleSidebar()"></button>
+  </div>
+
+  <div class="sidebar-body p-3">
+    <!-- Show ADD only for Admin -->
+    <button *ngIf="auth.getRole() === 'admin'" 
+            class="btn btn-success w-100 mb-2" 
+            (click)="showAddForm(); toggleSidebar()">
+      {{ 'ADD_USER' | translate }}
+    </button>
+
+    <!-- Other Links -->
+    <button class="btn btn-outline-secondary w-100 mb-2" (click)="openLink('googleMeet'); toggleSidebar()">
+      {{ 'LIVE_STREAM' | translate }}
+    </button>
+    <button class="btn btn-outline-secondary w-100 mb-2" (click)="goToMoments(); toggleSidebar()">
+      {{ 'MOMENTS' | translate }}
+    </button>
+    <button class="btn btn-outline-secondary w-100 mb-2" (click)="goToContact(); toggleSidebar()">
+      {{ 'CONTACT' | translate }}
+    </button>
+  </div>
+</div>
+
+<!-- Backdrop -->
+<div class="backdrop" *ngIf="isSidebarOpen" (click)="toggleSidebar()"></div>
+
+
+<!-- ...existing code... -->
+
+<!-- Notification Ticker -->
+<div class="notification-ticker bg-warning text-dark py-1 px-3" *ngIf="notifications?.length">
+  <marquee>
+    {{ notifications.join(' | ') }}
+  </marquee>
+</div>
+
+<!-- ...existing code... -->

@@ -1,0 +1,29 @@
+<!-- admin.component.html -->
+<div class="container mt-4">
+  <h2>👑 Admin Dashboard</h2>
+  <button class="btn btn-success mb-3" (click)="addUser()">+ Add User</button>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let u of users; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ u.fullName }}</td>
+        <td>{{ u.email }}</td>
+        <td>{{ u.role }}</td>
+        <td>
+          <button class="btn btn-sm btn-primary me-2" (click)="editUser(u)">Edit</button>
+          <button class="btn btn-sm btn-danger" (click)="deleteUser(u.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

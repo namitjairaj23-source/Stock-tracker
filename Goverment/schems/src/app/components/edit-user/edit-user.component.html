@@ -1,0 +1,120 @@
+<div class="container p-4">
+  <h2>Edit User</h2>
+
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="row g-3">
+
+    <!-- ✅ Full Name -->
+    <div class="col-md-6">
+      <label for="fullName">Full Name</label>
+      <input id="fullName" class="form-control" formControlName="fullName" placeholder="Full Name" />
+      <div class="text-danger" *ngIf="userForm.get('fullName')?.touched && userForm.get('fullName')?.invalid">
+        <small *ngIf="userForm.get('fullName')?.errors?.['required']">Full Name is required</small>
+        <small *ngIf="userForm.get('fullName')?.errors?.['minlength']">Min 3 characters required</small>
+      </div>
+    </div>
+
+    <!-- ✅ Email -->
+    <div class="col-md-6">
+      <label for="email">Email</label>
+      <input type="email" id="email" class="form-control" formControlName="email" placeholder="Email" />
+      <div class="text-danger" *ngIf="userForm.get('email')?.touched && userForm.get('email')?.invalid">
+        <small *ngIf="userForm.get('email')?.errors?.['required']">Email is required</small>
+        <small *ngIf="userForm.get('email')?.errors?.['pattern']">Invalid email format</small>
+      </div>
+    </div>
+
+    <!-- ✅ State -->
+    <div class="col-md-6">
+      <label for="state">State</label>
+      <select id="state" class="form-control" formControlName="state" (change)="handleStateChange($event)">
+        <option value="">Select State</option>
+        <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+      </select>
+      <div class="text-danger" *ngIf="userForm.get('state')?.touched && userForm.get('state')?.invalid">
+        <small>State is required</small>
+      </div>
+    </div>
+
+    <!-- ✅ District -->
+    <div class="col-md-6">
+      <label for="district">District</label>
+      <select id="district" class="form-control" formControlName="district">
+        <option value="">Select District</option>
+        <option *ngFor="let d of districts" [value]="d">{{ d }}</option>
+      </select>
+      <div class="text-danger" *ngIf="userForm.get('district')?.touched && userForm.get('district')?.invalid">
+        <small>District is required</small>
+      </div>
+    </div>
+
+    <!-- ✅ Share Name -->
+    <div class="col-md-6">
+      <label for="sharename">Share Name</label>
+      <input id="sharename" class="form-control" formControlName="ShareName" placeholder="Enter Share Name" />
+      <div class="text-danger" *ngIf="userForm.get('ShareName')?.touched && userForm.get('ShareName')?.invalid">
+        <small>Share name is required</small>
+      </div>
+    </div>
+
+    <!-- ✅ Date -->
+    <div class="col-md-6">
+      <label for="date">Date</label>
+      <input id="date" class="form-control" type="date" formControlName="date" />
+      <div class="text-danger" *ngIf="userForm.get('date')?.touched && userForm.get('date')?.invalid">
+        <small>Date is required</small>
+      </div>
+    </div>
+
+    <!-- ✅ Qty -->
+    <div class="col-md-3">
+      <label for="qty">Qty</label>
+      <input id="qty" class="form-control" type="number" formControlName="ShareQty" (input)="onQtyOrRateChange()" />
+    </div>
+
+    <!-- ✅ Rate -->
+    <div class="col-md-3">
+      <label for="rate">Rate</label>
+      <input id="rate" class="form-control" type="number" formControlName="ShareRate" (input)="onQtyOrRateChange()" />
+    </div>
+
+    <!-- ✅ Amount -->
+    <div class="col-md-3">
+      <label for="amount">Amount</label>
+      <input id="amount" class="form-control" formControlName="ShareAmount" readonly />
+    </div>
+
+    <!-- ✅ Authorized Person -->
+    <div class="col-md-3">
+      <label for="authorized">Authorized Person</label>
+      <select id="authorized" class="form-control" formControlName="authorizedPerson">
+        <option value="">Select Person</option>
+        <option *ngFor="let person of authorizedPersons" [value]="person">{{ person }}</option>
+      </select>
+    </div>
+
+    <!-- ✅ Upload Photo -->
+    <div class="col-md-6 mt-3">
+      <label>Upload Photo</label>
+      <input type="file" class="form-control" (change)="onPhotoUpload($event)" />
+    </div>
+
+    <!-- ✅ Preview Photo -->
+    <div class="col-md-6 mt-3" *ngIf="uploadedPhoto">
+      <img [src]="uploadedPhoto" width="120" height="120" class="border rounded" />
+      <div class="btn-group d-block mt-1">
+        <label class="btn btn-sm btn-warning">
+          Update
+          <input type="file" hidden (change)="onPhotoUpload($event)" />
+        </label>
+        <button type="button" class="btn btn-sm btn-danger" (click)="removePhoto()">Remove</button>
+        <button type="button" class="btn btn-sm btn-success" (click)="downloadPhoto(uploadedPhoto)">Download</button>
+      </div>
+    </div>
+
+    <!-- ✅ Submit & Back -->
+    <div class="col-12 d-flex justify-content-between mt-4">
+      <button type="button" class="btn btn-secondary" (click)="goBack()">Back</button>
+      <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Submit</button>
+    </div>
+  </form>
+</div>

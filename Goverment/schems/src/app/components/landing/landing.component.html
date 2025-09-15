@@ -1,0 +1,107 @@
+<!-- ===== HEADER ===== -->
+<header class="header">
+  <div class="logo">Stock Leader Database</div>
+  <button class="hamburger" aria-label="Toggle navigation menu" (click)="toggleSidebar()">☰</button>
+  <nav [class.open]="sidebarOpen" class="nav-links">
+    <a routerLink="/" routerLinkActive="active" (click)="closeSidebar()">Home</a>
+    <a href="#about">About</a>
+    <a routerLink="/login" routerLinkActive="active" (click)="closeSidebar()">Sign&nbsp;In</a>
+    <a routerLink="/contact" routerLinkActive="active" (click)="closeSidebar()">Contact&nbsp;Us</a>
+  </nav>
+</header>
+
+<!-- ===== MAIN SECTION ===== -->
+<main class="landing-container">
+  <section class="content fade-in">
+    <h1>Welcome to Stock Leader Database</h1>
+    <p>
+      Track government schemes, manage stock details, and access
+      real-time analytics to stay ahead in the market.
+    </p>
+  </section>
+
+  <!-- Flip Cards -->
+  <section class="cards">
+    <div class="flip-card fade-in delay-1" [class.flipped]="flipped[0]" (click)="toggleFlip(0)">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <h3>📊 Stock Tracking</h3>
+          <p>Monitor stock prices, profits, and performance in real time.</p>
+        </div>
+        <div class="flip-back">
+          <h3>Details</h3>
+          <p>Live market updates, charts, and profit/loss analysis with export options.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card fade-in delay-2" [class.flipped]="flipped[1]" (click)="toggleFlip(1)">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <h3>🏛 Govt Schemes</h3>
+          <p>Stay updated with the latest government initiatives.</p>
+        </div>
+        <div class="flip-back">
+          <h3>Details</h3>
+          <p>Database of programs, eligibility details, and instant alerts.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card fade-in delay-3" [class.flipped]="flipped[2]" (click)="toggleFlip(2)">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <h3>📈 Reports</h3>
+          <p>Export detailed reports to PDF or Excel with a single click.</p>
+        </div>
+        <div class="flip-back">
+          <h3>Details</h3>
+          <p>Analytics with sortable tables and export options.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- About -->
+    <div class="footer-section about" id="about">
+      <h3>About</h3>
+      <p>
+        Stock Leader Database helps you track government schemes,
+        manage stock details, and access real-time analytics.
+      </p>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-section links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a routerLink="/" routerLinkActive="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a routerLink="/login" routerLinkActive="active">Sign In</a></li>
+        <li><a routerLink="/contact" routerLinkActive="active">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact -->
+    <div class="footer-section contact">
+      <h3>Contact Us</h3>
+      <p><strong>Vinay Soni</strong></p>
+  <p>📧 <a href="mailto:vinaysoni&#64;example.com">vinaysoni&#64;example.com</a></p>
+      <p>📞 <a href="tel:7737770537">7737770537</a></p>
+      <p>📍 India</p>
+    </div>
+  </div>
+
+  <!-- Bottom -->
+  <div class="footer-bottom">
+    © {{ currentYear }} Stock Leader Database. All rights reserved. |
+    <a href="#">Website Policy</a> |
+    <a href="#">Terms & Conditions</a> |
+    <a href="#">Disclaimer</a>
+  </div>
+</footer>

@@ -1,0 +1,5 @@
+/* Font size classes */
+.font-small { font-size: 14px !important; }
+.font-normal { font-size: 16px !important; }
+.font-large { font-size: 18px !important; }
+.font-xlarge { font-size: 20px !important; }

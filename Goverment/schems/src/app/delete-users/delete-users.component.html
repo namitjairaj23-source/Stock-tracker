@@ -1,0 +1,40 @@
+<div class="container mt-4">
+  <h2 class="text-danger">🗑 Deleted Users</h2>
+
+  <table class="table table-bordered table-striped mt-3" *ngIf="deletedUsers.length > 0; else noData">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>State</th>
+        <th>District</th>
+        <th>Share Name</th>
+        <th>Qty</th>
+        <th>Rate</th>
+        <th>Amount</th>
+        <th>Authorized Person</th>
+        <th>Created At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of deletedUsers">
+        <td>{{ user.id }}</td>
+        <td>{{ user.fullName }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.state }}</td>
+        <td>{{ user.District }}</td>
+        <td>{{ user.ShareName }}</td>
+        <td>{{ user.Qty }}</td>
+        <td>{{ user.rate }}</td>
+        <td>{{ user.Amount }}</td>
+        <td>{{ user.authorizedPerson }}</td>
+        <td>{{ user.created_at | date:'short' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #noData>
+    <p class="text-muted">No deleted users found.</p>
+  </ng-template>
+</div>

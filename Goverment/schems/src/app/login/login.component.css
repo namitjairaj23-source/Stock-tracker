@@ -1,0 +1,80 @@
+/* 🔹 Login Box Container */
+.login-box {
+  max-width: 400px;
+  margin: 50px auto;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  animation: fadeInUp 0.6s ease-out;
+  transition: all 0.3s ease-in-out;
+}
+
+/* 🔹 Heading */
+.login-box h3 {
+  text-align: center;
+  font-weight: bold;
+  animation: fadeIn 0.8s ease-in;
+}
+
+/* 🔹 Input Fields */
+.login-box input,
+.login-box select {
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  transition: all 0.3s ease-in-out;
+}
+
+.login-box input:focus,
+.login-box select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+  transform: scale(1.02);
+}
+
+/* 🔹 Buttons */
+.login-box button {
+  border-radius: 8px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.login-box button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* 🔹 Links */
+.login-box a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.login-box a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* 🔹 Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Smooth toggle between Login/Register forms */
+form {
+  animation: fadeIn 0.6s ease-in-out;
+}

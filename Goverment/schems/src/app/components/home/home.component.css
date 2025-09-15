@@ -1,0 +1,157 @@
+/* General layout */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Filter section */
+.filter-bar {
+  animation: fadeIn 0.6s ease-in-out;
+  transition: all 0.3s ease;
+}
+
+.filter-bar input {
+  border-radius: 8px;
+  transition: box-shadow 0.3s;
+}
+
+.filter-bar input:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Table Card */
+.table-container {
+  animation: slideUp 0.5s ease;
+  border-radius: 12px;
+  overflow-x: auto;
+}
+
+h5 {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Export Icons */
+button.btn i.bi {
+  transition: transform 0.3s ease;
+}
+
+button.btn:hover i.bi {
+  transform: scale(1.2);
+}
+
+/* Upload Button */
+.btn-info i {
+  margin-right: 5px;
+}
+
+/* Table Styling */
+.table {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table th {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table td {
+  vertical-align: middle;
+  transition: background-color 0.2s;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Image Preview */
+.img-thumbnail {
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.img-thumbnail:hover {
+  transform: scale(1.05);
+}
+
+/* Buttons */
+button.btn-sm {
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+
+button.btn-sm.btn-primary {
+  background-color: #007bff;
+  border: none;
+}
+
+button.btn-sm.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+button.btn-sm.btn-danger:hover {
+  background-color: #c82333;
+}
+
+button.btn-outline-success:disabled,
+button.btn-outline-success:disabled:hover {
+  background-color: #e9ecef;
+  color: #6c757d;
+  cursor: not-allowed;
+}
+
+/* Pagination */
+.pagination-controls {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.fw-bold {
+  font-size: 1rem;
+}
+.notification-ticker {
+  background: #f8f9fa;
+  color: #333;
+  height: 40px;
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #ddd;
+  position: relative;
+}
+
+.ticker-content {
+  display: inline-block;
+  padding-right: 50px;
+  animation: scroll-left 12s linear infinite;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
