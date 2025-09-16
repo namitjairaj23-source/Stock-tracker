@@ -21,47 +21,113 @@
   </section>
 
   <!-- Flip Cards -->
-  <section class="cards">
-    <div class="flip-card fade-in delay-1" [class.flipped]="flipped[0]" (click)="toggleFlip(0)">
-      <div class="flip-inner">
-        <div class="flip-front">
-          <h3>📊 Stock Tracking</h3>
-          <p>Monitor stock prices, profits, and performance in real time.</p>
-        </div>
-        <div class="flip-back">
-          <h3>Details</h3>
-          <p>Live market updates, charts, and profit/loss analysis with export options.</p>
-        </div>
+
+<!-- 👇 Heading ko section se bahar rakhein -->
+<h2 class="section-title">Cards Details</h2> <!-- 👈 Cards ke upar alag line me heading -->
+
+<section class="cards">
+  <!-- ====== CARD 1 ====== -->
+  <div class="flip-card fade-in delay-1" [class.flipped]="flipped[0]" (click)="toggleFlip(0)">
+    <div class="flip-inner">
+      <div class="flip-front">
+        <!-- 👇 PEHLE IMAGE ADD KAREN -->
+        <img src="assets/img/stock.jpg" alt="Stock Tracking" class="card-img" />
+
+        <!-- 👇 USKE BAAD DETAILS -->
+        <h3>📊 Stock Tracking</h3>
+        <p>Monitor stock prices, profits, and performance in real time.</p>
       </div>
+      <div class="flip-back">
+        <h3>Details</h3>
+        <p>Live market updates, charts, and profit/loss analysis with export options.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== CARD 2 ====== -->
+  <div class="flip-card fade-in delay-2" [class.flipped]="flipped[1]" (click)="toggleFlip(1)">
+    <div class="flip-inner">
+      <div class="flip-front">
+        <img src="assets/img/govt.jpg" alt="Govt Schemes" class="card-img" />
+        <h3>🏛 Govt Schemes</h3>
+        <p>Stay updated with the latest government initiatives.</p>
+      </div>
+      <div class="flip-back">
+        <h3>Details</h3>
+        <p>Database of programs, eligibility details, and instant alerts.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== CARD 3 ====== -->
+  <div class="flip-card fade-in delay-3" [class.flipped]="flipped[2]" (click)="toggleFlip(2)">
+    <div class="flip-inner">
+      <div class="flip-front">
+        <img src="assets/img/report.jpg" alt="Reports" class="card-img" />
+        <h3>📈 Reports</h3>
+        <p>Export detailed reports to PDF or Excel with a single click.</p>
+      </div>
+      <div class="flip-back">
+        <h3>Details</h3>
+        <p>Analytics with sortable tables and export options.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- ===== PHOTO GALLERY ===== -->
+<!-- ===== PHOTO GALLERY ===== -->
+<section class="photo-gallery">
+  <h2 class="section-title">Photo Gallery</h2>
+
+  <!-- viewport + arrows -->
+  <div class="gallery-wrapper">
+    <button class="arrow left" aria-label="Scroll left" (click)="scrollLeft()">&lt;</button>
+
+    <!-- scrollable viewport -->
+    <div
+      #gallery
+      class="gallery-viewport"
+      (mousedown)="onDragStart($event)"
+      (touchstart)="onTouchStart($event)"
+      (touchmove)="onTouchMove($event)"
+      (touchend)="onTouchEnd()"
+      (scroll)="onScroll()"
+    >
+      <img
+        *ngFor="let img of images; let i = index"
+        [src]="img"
+        [alt]="'Gallery image ' + (i + 1)"
+        class="gallery-img"
+        (click)="openImage(img)"
+        draggable="false"
+      />
     </div>
 
-    <div class="flip-card fade-in delay-2" [class.flipped]="flipped[1]" (click)="toggleFlip(1)">
-      <div class="flip-inner">
-        <div class="flip-front">
-          <h3>🏛 Govt Schemes</h3>
-          <p>Stay updated with the latest government initiatives.</p>
-        </div>
-        <div class="flip-back">
-          <h3>Details</h3>
-          <p>Database of programs, eligibility details, and instant alerts.</p>
-        </div>
-      </div>
-    </div>
+    <button class="arrow right" aria-label="Scroll right" (click)="scrollRight()">&gt;</button>
+  </div>
 
-    <div class="flip-card fade-in delay-3" [class.flipped]="flipped[2]" (click)="toggleFlip(2)">
-      <div class="flip-inner">
-        <div class="flip-front">
-          <h3>📈 Reports</h3>
-          <p>Export detailed reports to PDF or Excel with a single click.</p>
-        </div>
-        <div class="flip-back">
-          <h3>Details</h3>
-          <p>Analytics with sortable tables and export options.</p>
-        </div>
-      </div>
+  <!-- custom scrollbar -->
+  <div class="custom-scrollbar" #scrollbar (pointerdown)="$event.preventDefault()">
+    <div class="scrollbar-track" #scrollbarTrack (click)="onScrollbarTrackClick($event)">
+      <div
+        class="scrollbar-thumb"
+        #thumb
+        (pointerdown)="onThumbPointerDown($event)"
+        role="slider"
+        aria-orientation="horizontal"
+        tabindex="0"
+      ></div>
     </div>
-  </section>
-</main>
+  </div>
+
+  <!-- Fullscreen modal -->
+  <div class="modal" [class.show]="modalOpen" (click)="closeImage()">
+    <img [src]="selectedImage" alt="Full Image" (click)="$event.stopPropagation()">
+  </div>
+</section>
+
 
 <!-- ===== FOOTER ===== -->
 <footer class="footer">

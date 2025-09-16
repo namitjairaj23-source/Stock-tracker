@@ -51,9 +51,10 @@ export class HomeComponent implements OnInit {
   }
 
   // 🧠 Get full name
-  getFullName(user: any): string {
-    return `${user.fullName?.firstname || ''} ${user.fullName?.lastname || ''}`.trim();
-  }
+ getFullName(user: any): string {
+  return user.fullName || '';
+}
+
 
   // 🔍 Filter users
   applyFilter() {
@@ -74,6 +75,9 @@ export class HomeComponent implements OnInit {
       case 'name':
         this.filtered.sort((a, b) => this.getFullName(a).localeCompare(this.getFullName(b)));
         break;
+        case 'email':
+  this.filtered.sort((a,b) => (a.email || '').localeCompare(b.email || ''));
+  break
       case 'state':
         this.filtered.sort((a, b) => (a.state || '').localeCompare(b.state || ''));
         break;
@@ -84,17 +88,20 @@ export class HomeComponent implements OnInit {
         this.filtered.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
         break;
       case 'share':
-        this.filtered.sort((a, b) => (a.ShareName || '').localeCompare(b.ShareName || ''));
+        this.filtered.sort((a, b) => (a.shareName || '').localeCompare(b.shareName || ''));
         break;
       case 'qty':
-        this.filtered.sort((a, b) => a.ShareQty - b.ShareQty);
+        this.filtered.sort((a, b) => a.qty - b.qty);
         break;
       case 'rate':
-        this.filtered.sort((a, b) => a.ShareRate - b.ShareRate);
+        this.filtered.sort((a, b) => a.rate - b.rate);
         break;
       case 'amount':
-        this.filtered.sort((a, b) => a.ShareAmount - b.ShareAmount);
+        this.filtered.sort((a, b) => a.amount - b.amount);
         break;
+        case 'authorizedPerson':
+  this.filtered.sort((a,b) => (a.authorizedPerson || '').localeCompare(b.authorizedPerson || ''));
+  break;
     }
   }
 
@@ -126,10 +133,10 @@ export class HomeComponent implements OnInit {
       State: user.state,
       District: user.district,
       Date: user.date,
-      'Share Name': user.ShareName,
-      Qty: user.ShareQty,
-      Rate: user.ShareRate,
-      Amount: user.ShareAmount,
+      'shareName': user.shareName,
+      Qty: user.qty,
+      Rate: user.rate,
+      Amount: user.amount,
       AuthorizedPerson: user.authorizedPerson
     }));
 
@@ -149,10 +156,10 @@ export class HomeComponent implements OnInit {
       user.state,
       user.district,
       user.date,
-      user.ShareName,
-      user.ShareQty,
-      user.ShareRate,
-      user.ShareAmount,
+      user.shareName,
+      user.qty,
+      user.rate,
+      user.amount,
       user.authorizedPerson
     ]);
 
@@ -214,7 +221,7 @@ export class HomeComponent implements OnInit {
 
   // ❌ Delete user (soft delete)
  deleteUser(id: any) {
-  console.log("User object on delete:", id);  // 👈 Yeh add karo
+  console.log("User object on delete:", id);  
   if (!confirm(`Are you sure you want to delete ${id}?`)) return;
 
   this.userService.deleteUser(id).subscribe({
@@ -242,6 +249,7 @@ export class HomeComponent implements OnInit {
   // 📌 Sorting from UI
   sortData(key: string) {
     this.sortKey = key;
+    this.currentPage = 1; // Reset to first page on sort
     this.applySorting();
   }
 }
