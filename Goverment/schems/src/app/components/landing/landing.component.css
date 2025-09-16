@@ -1,29 +1,20 @@
-<<<<<<< HEAD
 /* RESET */
-=======
-/* Reset */
->>>>>>> 25bed241cb111a84e24f4ac5acd17e7cb18fd0fe
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-<<<<<<< HEAD
 body {
   font-family: 'Poppins', sans-serif;
 }
 
 /* HEADER */
-=======
-/* Header */
->>>>>>> 25bed241cb111a84e24f4ac5acd17e7cb18fd0fe
 .header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-<<<<<<< HEAD
   padding: 15px 40px;
   background: rgba(0, 0, 0, 0.6);
   display: flex;
@@ -200,140 +191,11 @@ body {
 }
 
 /* ANIMATIONS */
-=======
-  padding: 15px 50px;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 100;
-}
-.logo {
-  font-size: 1.6rem;
-  font-weight: bold;
-  color: white;
-}
-.nav-links a {
-  margin: 0 15px;
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-}
-.nav-links a:hover {
-  color: #4caf50;
-}
-
-/* Landing container */
-.landing-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 120px 80px 60px; /* top padding fixed-header ke liye */
-  min-height: 100vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-              url("/assets/landing.jpg") no-repeat center center/cover;
-  color: white;
-  font-family: 'Segoe UI', sans-serif;
-  gap: 60px;
-}
-/* Buttons */
-.buttons {
-  display: flex;
-  gap: 20px;
-}
-.btn {
-  padding: 14px 32px;
-  border-radius: 30px;
-  border: none;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-}
-.primary {
-  background: #004aad;
-  color: white;
-}
-.primary:hover {
-  background: #003380;
-}
-.secondary {
-  background: white;
-  color: black;
-  border: 2px solid white;
-}
-.secondary:hover {
-  background: #4caf50;
-  color: white;
-}
-
-/* Right side cards */
-.cards {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.card {
-  background: rgba(255, 255, 255, 0.85);
-  color: white;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-  padding: 25px;
-  border-radius: 15px;
-  backdrop-filter: blur(8px);
-  transition: transform 0.3s ease, background 0.3s ease;
-}
-.card h3 {
-  margin-bottom: 10px;
-  font-size: 1.2rem;
-}
-.card:hover {
- transform: translateY(-8px);
-  background: #f0f0f0;
-}
-
-/* Footer */
-.footer {
-  text-align: center;
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  position: relative;
-}
-
-.about h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-}
-.about p {
-  max-width: 700px;
-  margin: auto;
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-.contact {
-  padding: 60px 80px;
-  background: #004aad;
-  color: white;
-  text-align: center;
-}
-.contact h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-}
-.contact p {
-  font-size: 1.1rem;
-}
-
-/* Animations */
->>>>>>> 25bed241cb111a84e24f4ac5acd17e7cb18fd0fe
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 1s forwards;
 }
-<<<<<<< HEAD
 
 .fade-in.delay-1 {
   animation-delay: 0.3s;
@@ -347,23 +209,12 @@ body {
   animation-delay: 0.9s;
 }
 
-=======
-.fade-in.delay-1 { animation-delay: 0.5s; }
-.fade-in.delay-2 { animation-delay: 1s; }
-
-.fade-in-right {
-  opacity: 0;
-  transform: translateX(50px);
-  animation: fadeInRight 1s forwards 1.2s;
-}
->>>>>>> 25bed241cb111a84e24f4ac5acd17e7cb18fd0fe
 @keyframes fadeInUp {
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-<<<<<<< HEAD
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
@@ -394,24 +245,3 @@ body {
     text-align: center;
   }
 }
-=======
-@keyframes fadeInRight {
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* Responsive */
-@media (max-width: 992px) {
-  .landing-container {
-    flex-direction: column;
-    text-align: center;
-  }
-  .cards {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-}
->>>>>>> 25bed241cb111a84e24f4ac5acd17e7cb18fd0fe

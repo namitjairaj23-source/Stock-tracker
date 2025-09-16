@@ -63,17 +63,10 @@
 
     <!-- Share Name -->
     <div class="col-md-6">
-<<<<<<< HEAD
       <label for="shareName">Share Name</label>
       <input id="ShareName" class="form-control" formControlName="shareName" placeholder="Enter Share Name" />
       <div class="text-danger" *ngIf="userForm.get('shareName')?.touched && userForm.get('shareName')?.invalid">
         <small *ngIf="userForm.get('shareName')?.errors?.['required']">Share name is required</small>
-=======
-      <label for="ShareName">Share Name</label>
-      <input id="ShareName" class="form-control" formControlName="ShareName" placeholder="Enter Share Name" />
-      <div class="text-danger" *ngIf="userForm.get('ShareName')?.touched && userForm.get('ShareName')?.invalid">
-        <small *ngIf="userForm.get('ShareName')?.errors?.['required']">Share name is required</small>
->>>>>>> 25bed241cb111a84e24f4ac5acd17e7cb18fd0fe
       </div>
     </div>
 
@@ -89,45 +82,27 @@
     <!-- Share Qty -->
     <div class="col-md-3">
       <label for="qty">Share Qty</label>
-<<<<<<< HEAD
       <input id="qty" class="form-control" type="number" formControlName="qty" (input)="onQtyOrRateChange()" />
       <div class="text-danger" *ngIf="userForm.get('qty')?.touched && userForm.get('qty')?.invalid">
         <small *ngIf="userForm.get('qty')?.errors?.['required']">Quantity is required</small>
         <small *ngIf="userForm.get('qty')?.errors?.['min']">Must be greater than 0</small>
-=======
-      <input id="qty" class="form-control" type="number" formControlName="ShareQty" (input)="onQtyOrRateChange()" />
-      <div class="text-danger" *ngIf="userForm.get('ShareQty')?.touched && userForm.get('ShareQty')?.invalid">
-        <small *ngIf="userForm.get('ShareQty')?.errors?.['required']">Quantity is required</small>
-        <small *ngIf="userForm.get('ShareQty')?.errors?.['min']">Must be greater than 0</small>
->>>>>>> 25bed241cb111a84e24f4ac5acd17e7cb18fd0fe
       </div>
     </div>
 
     <!-- Share Rate -->
     <div class="col-md-3">
       <label for="rate">Share Rate</label>
-<<<<<<< HEAD
       <input id="rate" class="form-control" type="number" formControlName="rate" (input)="onQtyOrRateChange()" />
       <div class="text-danger" *ngIf="userForm.get('rate')?.touched && userForm.get('rate')?.invalid">
         <small *ngIf="userForm.get('rate')?.errors?.['required']">Rate is required</small>
         <small *ngIf="userForm.get('rate')?.errors?.['min']">Must be greater than 0</small>
-=======
-      <input id="rate" class="form-control" type="number" formControlName="ShareRate" (input)="onQtyOrRateChange()" />
-      <div class="text-danger" *ngIf="userForm.get('ShareRate')?.touched && userForm.get('ShareRate')?.invalid">
-        <small *ngIf="userForm.get('ShareRate')?.errors?.['required']">Rate is required</small>
-        <small *ngIf="userForm.get('ShareRate')?.errors?.['min']">Must be greater than 0</small>
->>>>>>> 25bed241cb111a84e24f4ac5acd17e7cb18fd0fe
       </div>
     </div>
 
     <!-- Share Amount -->
     <div class="col-md-3">
       <label for="amount">Share Amount</label>
-<<<<<<< HEAD
       <input id="amount" class="form-control" formControlName="amount" readonly />
-=======
-      <input id="amount" class="form-control" formControlName="ShareAmount" readonly />
->>>>>>> 25bed241cb111a84e24f4ac5acd17e7cb18fd0fe
     </div>
 
     <!-- Authorized Person -->

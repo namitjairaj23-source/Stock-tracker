@@ -29,11 +29,7 @@ const JWT_SECRET = "mysecretkey";
 const pool = mysql.createPool({
   host: "localhost",
   user: "root",
-<<<<<<< HEAD
   password: "root@12345", 
-=======
-  password: "root@12345",
->>>>>>> 25bed241cb111a84e24f4ac5acd17e7cb18fd0fe
   database: "mysqldb",
   waitForConnections: true,
   connectionLimit: 10,
