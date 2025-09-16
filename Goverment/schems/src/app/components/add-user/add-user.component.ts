@@ -38,20 +38,35 @@ export class AddUserComponent implements OnInit {
       email: ['', [Validators.required, Validators.email, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]],
       state: ['', Validators.required],
       district: ['', Validators.required],
+<<<<<<< HEAD
       shareName: ['', Validators.required],
       date: ['', Validators.required],
       qty: [null, [Validators.required, Validators.min(1)]],
       rate: [null, [Validators.required, Validators.min(1)]],
       amount: [{ value: '', disabled: true }],
+=======
+      ShareName: ['', Validators.required],
+      date: ['', Validators.required],
+      ShareQty: [null, [Validators.required, Validators.min(1)]],
+      ShareRate: [null, [Validators.required, Validators.min(1)]],
+      ShareAmount: [{ value: '', disabled: true }],
+>>>>>>> 25bed241cb111a84e24f4ac5acd17e7cb18fd0fe
       authorizedPerson: ['', Validators.required]
     });
   }
 
   onQtyOrRateChange(): void {
+<<<<<<< HEAD
     const qty = this.userForm.get('qty')?.value || 0;
     const rate = this.userForm.get('rate')?.value || 0;
     const amount = qty * rate;
     this.userForm.get('amount')?.setValue(amount);
+=======
+    const qty = this.userForm.get('ShareQty')?.value || 0;
+    const rate = this.userForm.get('ShareRate')?.value || 0;
+    const amount = qty * rate;
+    this.userForm.get('ShareAmount')?.setValue(amount);
+>>>>>>> 25bed241cb111a84e24f4ac5acd17e7cb18fd0fe
   }
 
   onStateChange(state: string): void {
